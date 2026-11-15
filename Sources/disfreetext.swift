@@ -434,6 +434,10 @@ struct Editor: NSViewRepresentable {
         textView.drawsBackground = false
         textView.isRichText = false
         textView.allowsUndo = true
+        // Keep plain " and ' and -- as typed. macOS would otherwise turn them into “curly” quotes and
+        // dashes, which end up in the saved .md file instead of the characters Markdown expects.
+        textView.isAutomaticQuoteSubstitutionEnabled = false
+        textView.isAutomaticDashSubstitutionEnabled = false
 
         // Re-layout when the window is resized.
         scrollView.contentView.postsFrameChangedNotifications = true
